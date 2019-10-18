@@ -1,0 +1,75 @@
+#include<stdio.h>
+int main()
+{
+int arr[ 5 ];
+int dig[ 5 ];
+int var[ 10 ];
+int dda[ 10 ][ 5] ;
+int h , nd = 0 , c = 0 , m , n , k = 0;
+
+printf( " \n Enter 5 Numbers: " );
+
+for( int i = 0 ; i < 5 ; i++ )
+scanf("%d",&arr[ i ]);
+
+h = arr[ 0 ];
+
+for( int i = 1 ; i < 5 ; i++ )
+if( arr[ i ] > h)
+h = arr[ i ];
+
+
+while( h != 0 )
+{
+nd ++;
+h = h / 10;
+}
+
+do
+{
+c++;
+m = 1;
+for( int i = 1 ; i <= c ; i++ , m *= 10)   {}
+n = m / 10;
+
+for( int i = 0 ; i < 5 ; i++)
+dig[ i ] = ( ( arr[ i ] % m ) - ( arr[ i ] % n ) ) / n;
+
+for( int j = 0 ; j < 10 ; j++ )
+var[ j ] = -1;
+
+for( int i = 0 ; i < 5 ; i++ )
+{
+for( int j = 0 ; j < 10 ; j++ )
+{
+if( dig[ i ] == j )
+{
+dda[ j ][ ++var[ j ] ] = arr[ i ];
+}
+}
+}
+k= 0;
+while(k < 5)
+{
+for( int i = 0 ; i <= 9 ; i++ )
+{
+for( int j = 0 ; j <= var[ i ] ; j++ )
+{
+arr[ k++ ] = dda[ i ][ j ];
+}
+}
+}
+printf("\n Pass - %d : %d ",c,arr[ 0 ] );
+
+for( int i = 1 ; i < 5 ; i++ )
+printf( " ->  %d ", arr[ i ] );
+
+
+}while(c != nd);
+
+printf("\n Sorted Values are: %d ", arr[ 0 ] );
+
+for( int i = 1 ; i < 5 ; i++ )
+printf( " ->  %d ", arr[ i ] );
+
+}
